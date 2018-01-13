@@ -2,10 +2,13 @@ from django.test import TestCase
 from .models import Face
 from rest_framework.test import APIClient
 from rest_framework import status
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
+import os
 
-TEST_FILE_PATH = './testData/test_img.png'
+dir = os.path.dirname(__file__)
+TEST_IMAGE_PATH = os.path.join(dir, '/testData/test_img.jpg')
+
 
 class ModelTest(TestCase):
 
@@ -23,9 +26,7 @@ class ViewTestCase(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-        image = SimpleUploadedFile(name='test_image.jpg', content=open(TEST_FILE_PATH, 'rb').read(),
-                                            content_type='image/jpeg')
-        self.data = {'name': image}
+        self.data = {'image': None}
         self.response = self.client.post(
             reverse('create'),
             self.data,
@@ -36,7 +37,6 @@ class ViewTestCase(TestCase):
 
 
     def test_api_can_get_a_face(self):
-        """Test the api can get a given bucketlist."""
         face = Face.objects.get()
         response = self.client.get(
             reverse('details',
