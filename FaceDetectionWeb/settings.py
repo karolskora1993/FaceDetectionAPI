@@ -34,13 +34,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # Disable Django's own staticfiles handling in favour of WhiteNoise, for
-    # greater consistency between gunicorn and `./manage.py runserver`. See:
-    # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api'
+    'api',
+    ' push_notifications'
 ]
 
 MIDDLEWARE = [
@@ -100,6 +98,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+        "FCM_API_KEY": "AAAAPrHoUQo:APA91bH4h6vDw64C2TWPXctXc1NhqnBVMsLKEOptDk-vktRXUElv-O6wbnZ6zAWujcwUCpCl_yCb65Fh08oPb5Eirf30HaLTZnUqySVwTszHX2wMejke_KVKJDTBG3wvHM20H7MDa4o-"
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
