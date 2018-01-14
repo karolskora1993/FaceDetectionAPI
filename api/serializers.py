@@ -7,4 +7,4 @@ class FaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Face
         fields = ('id', 'image', 'date_created', 'description')
-        read_only_fields = ('id', 'date_created', 'description')
+        read_only_fields = ('id', 'date_created',)
