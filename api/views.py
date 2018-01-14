@@ -11,8 +11,8 @@ class CreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
-        device = GCMDevice.objects.get(registration_id=fcm_device_id)
-        device.send_message("Nie rozpoznano twarzy")
+        fcm_device = GCMDevice.objects.create(registration_id=fcm_device_id, cloud_message_type="FCM")
+        fcm_device.send_message("Nie rozpoznano twarzy")
 
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
