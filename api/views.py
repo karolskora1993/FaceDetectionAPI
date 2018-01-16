@@ -10,7 +10,6 @@ class CreateView(generics.ListCreateAPIView):
     serializer_class = FaceSerializer
 
     def perform_create(self, serializer):
-        serializer.save()
         fcm_device = GCMDevice.objects.create(registration_id=fcm_device_id, cloud_message_type="FCM")
         fcm_device.send_message("Nie rozpoznano twarzy")
 
